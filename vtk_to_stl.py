@@ -1,5 +1,6 @@
 import vtk
 import numpy as np
+from argparse import ArgumentParser
 
 def stlTri(tri, normal, handle):
     handle.write('facet normal {} {} {}\n'.format(normal[0], normal[1], normal[2]))
@@ -65,5 +66,15 @@ def readVTKPolyData(vtkname):
     else:
         raise TypeError("Wrong VTK File Type: {}".format(fType))
 
+'''
 polydata = readVTKPolyData('sideHole.vtk')
 vtk_to_stl(polydata, 'sideHole.stl')
+'''
+if __name__ == '__main__':
+    parser = ArgumentParser()
+    parser.add_argument('--vtk', type=str, required=True)
+    parser.add_argument('--stl', type=str, required=True)
+    args = parser.parse_args()
+
+    polydata = readVTKPolyData(args.vtk)
+    vtk_to_stl(polydata, args.stl)
