@@ -1,8 +1,6 @@
 from fileinput import filename
 from logging import raiseExceptions
 import os
-import stl
-from stl import mesh
 from argparse import ArgumentParser
 import numpy as np
 
